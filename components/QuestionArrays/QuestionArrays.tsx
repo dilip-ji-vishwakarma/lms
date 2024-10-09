@@ -114,7 +114,7 @@ export const QuestionArrays = () => {
             <div className='space-y-5'>
             {questions.map((item, index) => (
                 <div key={index} className='mt-3'>
-                    <p className='text-[20px] font-bold'>{item.label}</p>
+                    <p className='text-[20px] font-medium mb-3'>{item.label}</p>
                     <div className='flex gap-5 flex-wrap mt-2'>
                     {item.input.map((radio, index) => (
 

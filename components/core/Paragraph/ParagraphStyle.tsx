@@ -8,6 +8,6 @@ type Paragraph = {
 
 export const ParagraphStyle = ({time, title, description}: Paragraph) => {
   return (
-    <p><b>{time}</b> <i>{title}</i>{description}</p>
+    <p className='text-[18px]'><b >{time}</b> <i className='underline'>{title}</i>{description}</p>
   )
 }
