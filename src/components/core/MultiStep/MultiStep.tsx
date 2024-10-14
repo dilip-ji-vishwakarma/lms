@@ -69,7 +69,7 @@ export const MultiStep = () => {
   return (
     <div className="font-sans text-white relative flex">
       <nav className="relative">
-        <ul className='flex flex-col space-y-10 ml-[-20px]'>
+        <ul className='sticky top-0 flex flex-col space-y-10 ml-[-20px]'>
           {timeLine.map((item, index) => (
             <li key={index} className={`relative z-10 ${step === index + 1 ? 'active' : ''}`}>
               <button

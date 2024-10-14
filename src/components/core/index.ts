@@ -4,3 +4,4 @@ export * from "./Paragraph";
 export * from "./Tutorial"
 export * from "./IconRender";
 export * from "./MultiStep";
+export * from "./Tab";

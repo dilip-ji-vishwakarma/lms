@@ -109,8 +109,6 @@ export const QuestionArrays = () => {
 
     return (
         <form id='queries'>
-            
-            <Heading>Answer The Questions</Heading>
             <div className='space-y-5'>
             {questions.map((item, index) => (
                 <div key={index} className='mt-3'>

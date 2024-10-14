@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Paragraph, Video } from '../core'
+import { Heading, Paragraph, Tab, Video } from '../core'
 import { useTranslations } from 'next-intl';
 import LanguageSelector from '../Locals/LanguageSelector';
 
@@ -16,9 +16,8 @@ export const Chapters = () => {
                 <Heading>React Tutorial for Beginners</Heading>
                 <LanguageSelector />
             </div>
-            <div>
                 <Paragraph>{t('description')}</Paragraph>
-            </div>
+                <Tab />
         </div>
     )
 }
