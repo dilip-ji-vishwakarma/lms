@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { ToolTip } from '../ToolTip';
-import { Video } from '../Video';
+import { Chapters } from '@/components/Chapters';
 
 export const MultiStep = () => {
   const [step, setStep] = useState(1);
@@ -41,12 +41,12 @@ export const MultiStep = () => {
     }
   ];
 
-  const componentClass = "flex justify-center items-center text-black shadow-[rgba(149,157,165,0.2)_0px_8px_24px] p-5";
+  const componentClass = "text-black shadow-[rgba(149,157,165,0.2)_0px_8px_24px] p-5";
 
   const renderStepContent = () => {
     switch (step) {
       case 1:
-        return <section className={componentClass}><Video url="https://www.youtube.com/embed/SqcY0GlETPk?si=-OHCyzVVo4sxSZVE" /></section>;
+        return <section className={componentClass}><Chapters /></section>;
       case 2:
         return <section className={componentClass}>Step 2: Personal Info</section>;
       case 3:
@@ -69,7 +69,7 @@ export const MultiStep = () => {
   return (
     <div className="font-sans text-white relative flex">
       <nav className="relative">
-        <ul className='fixed h-full flex flex-col space-y-10 ml-[-20px]'>
+        <ul className='flex flex-col space-y-10 ml-[-20px]'>
           {timeLine.map((item, index) => (
             <li key={index} className={`relative z-10 ${step === index + 1 ? 'active' : ''}`}>
               <button
@@ -90,7 +90,7 @@ export const MultiStep = () => {
         </ul>
       </nav>
 
-      <div className="flex-grow p-2 ml-[125px]">
+      <div className="flex-grow p-2 ml-[10px]">
         {renderStepContent()}
       </div>
     </div>
