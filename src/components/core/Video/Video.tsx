@@ -5,9 +5,11 @@ import { CgSpinner } from "react-icons/cg";
 
 type VideoProps = {
   url: string;
+  start: number;
+  end: number;
 };
 
-export const Video = ({ url }: VideoProps) => {
+export const Video = ({ url, start, end }: VideoProps) => {
   const [loading, setLoading] = useState(true);
 
   const getVideoId = (url: string) => {
@@ -24,6 +26,9 @@ export const Video = ({ url }: VideoProps) => {
     playerVars: {
       autoplay: 0,
       rel: 0,
+      controls: 1,
+      start: start, // Start at the specified time
+      end: end,  
     },
   };
 

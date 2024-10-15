@@ -11,13 +11,17 @@ export const Chapters = () => {
 
     return (
         <div className='space-y-6'>
-            <Video url="https://www.youtube.com/embed/SqcY0GlETPk?si=-OHCyzVVo4sxSZVE" />
+            <Video
+                url="https://www.youtube.com/embed/SqcY0GlETPk?si=-OHCyzVVo4sxSZVE"
+                start={0}
+                end={75}
+            />
             <div className='flex justify-between'>
                 <Heading>React Tutorial for Beginners</Heading>
                 <LanguageSelector />
             </div>
-                <Paragraph>{t('description')}</Paragraph>
-                <Tab />
+            <Paragraph>{t('description')}</Paragraph>
+            <Tab />
         </div>
     )
 }
