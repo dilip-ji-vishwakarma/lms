@@ -6,12 +6,13 @@ import { IconRender } from '../IconRender';
 import { RenderStepContent } from '@/components/Functions';
 
 export const MultiStep = () => {
+  const [isHydrated, setIsHydrated] = useState(false);
   const [step, setStep] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedStep = localStorage.getItem('currentStep');
       return savedStep ? parseInt(savedStep, 10) : 1;
     }
-    return 1; 
+    return 1;
   });
 
   const [timeline, setTimeline] = useState(false);
@@ -32,6 +33,9 @@ export const MultiStep = () => {
       setTimeline(false);
     }
   };
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   useEffect(() => {
     if (timeline) {
@@ -66,7 +70,7 @@ export const MultiStep = () => {
             {timeLine.map((item, index) => (
               <li key={index} className={`relative z-10 ${step === index + 1 ? 'active' : ''}`}>
                 <div
-                  className={`text-left transition-all duration-150 flex items-center space-x-4 ${step === index + 1 ? 'font-semibold text-black' : 'text-[#8F8E8E]'}`}
+                  className={`text-left transition-all duration-150 flex items-center space-x-4 ${isHydrated && step === index + 1 ? 'font-semibold text-black' : 'text-[#8F8E8E]'}`}
                   onClick={() => {
                     setStep(index + 1);
                     setTimeline(false);
@@ -115,7 +119,7 @@ export const MultiStep = () => {
         </nav>
 
         <div className="flex-grow md:p-2 md:ml-[10px]">
-          <RenderStepContent step={step}/>
+          <RenderStepContent step={step} />
         </div>
       </div>
     </>

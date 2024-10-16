@@ -1,6 +1,6 @@
 import React from 'react'
-import { Heading, Paragraph, Tab, Video } from '../core'
-import { useTranslations } from 'next-intl';
+import { Heading, Paragraph, Resizable, Tab, Video } from '../core'
+
 import LanguageSelector from '../Locals/LanguageSelector';
 
 type ChaptersProps = {
@@ -28,6 +28,10 @@ export const Chapters = ({ video, heading, paragraph }: ChaptersProps) => {
             </div>
             <Paragraph>{paragraph}</Paragraph>
             <Tab />
+            {/* <div className='mt-8'>
+            <Heading>Resizable Component</Heading>
+            <Resizable />
+            </div> */}
         </div>
     )
 }

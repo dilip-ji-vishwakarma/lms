@@ -5,7 +5,7 @@ import { Notes } from '@/components/Notes'
 
 export const Tab = () => {
     return (
-        <Tabs defaultValue="Questianaire" className="w-full">
+        <Tabs defaultValue="Questianaire" className="w-full space-y-5">
             <TabsList className='w-full'>
                 <TabsTrigger value="Questianaire" className='w-full text-xl py-2'>Questianaire</TabsTrigger>
                 <TabsTrigger value="Notes" className='w-full text-xl py-2'>Notes</TabsTrigger>
