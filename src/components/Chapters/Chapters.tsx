@@ -3,24 +3,30 @@ import { Heading, Paragraph, Tab, Video } from '../core'
 import { useTranslations } from 'next-intl';
 import LanguageSelector from '../Locals/LanguageSelector';
 
+type ChaptersProps = {
+    video: {
+        url: string;
+        start: number;
+        end: number;
+    }
+    heading: string;
+    paragraph: string;
+}
 
-
-export const Chapters = () => {
-
-    const t = useTranslations('HomePage');
+export const Chapters = ({ video, heading, paragraph }: ChaptersProps) => {
 
     return (
         <div className='space-y-6' id='#reactjs'>
             <Video
-                url="https://www.youtube.com/embed/SqcY0GlETPk?si=-OHCyzVVo4sxSZVE"
-                start={0}
-                end={75}
+                url={video.url}
+                start={video.start}
+                end={video.end}
             />
             <div className='md:flex justify-between'>
-                <Heading>React Tutorial for Beginners</Heading>
+                <Heading>{heading}</Heading>
                 <LanguageSelector />
             </div>
-            <Paragraph>{t('description')}</Paragraph>
+            <Paragraph>{paragraph}</Paragraph>
             <Tab />
         </div>
     )

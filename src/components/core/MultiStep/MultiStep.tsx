@@ -1,73 +1,28 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
 import { ToolTip } from '../ToolTip';
-import { Chapters } from '@/components/Chapters';
 import { Heading } from '../Heading';
 import { IconRender } from '../IconRender';
+import { RenderStepContent } from '@/components/Functions';
 
 export const MultiStep = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(() => {
+    // Retrieve the step from local storage or default to 1
+    const savedStep = localStorage.getItem('currentStep');
+    return savedStep ? parseInt(savedStep, 10) : 1;
+  });
   const [timeline, setTimeline] = useState(false);
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const timeLine = [
-    {
-      title: "Course Intro",
-      duration: "00:00:00"
-    },
-    {
-      title: "Prerequisites",
-      duration: "00:01:55"
-    },
-    {
-      title: "What is React?",
-      duration: "00:02:43"
-    },
-    {
-      title: "Development Environment",
-      duration: "00:04:57"
-    },
-    {
-      title: "Creating a React App",
-      duration: "00:06:24"
-    },
-    {
-      title: "Project Structure",
-      duration: "00:09:17"
-    },
-    {
-      title: "Creating a React Component",
-      duration: "00:11:20"
-    },
-    {
-      title: "How React Works",
-      duration: "00:16:41"
-    }
+    { title: "Course Intro", duration: "00:00:00" },
+    { title: "Prerequisites", duration: "00:01:55" },
+    { title: "What is React?", duration: "00:02:43" },
+    { title: "Development Environment", duration: "00:04:57" },
+    { title: "Creating a React App", duration: "00:06:24" },
+    { title: "Project Structure", duration: "00:09:17" },
+    { title: "Creating a React Component", duration: "00:11:20" },
+    { title: "How React Works", duration: "00:16:41" }
   ];
-
-  const componentClass = "text-black shadow-[rgba(149,157,165,0.2)_0px_8px_24px] md:p-5 p-3";
-
-  const renderStepContent = () => {
-    switch (step) {
-      case 1:
-        return <section className={componentClass}><Chapters /></section>;
-      case 2:
-        return <section className={componentClass}>Step 2: Personal Info</section>;
-      case 3:
-        return <section className={componentClass}>Step 3: Contact Details</section>;
-      case 4:
-        return <section className={componentClass}>Step 4: Address Info</section>;
-      case 5:
-        return <section className={componentClass}>Step 5: Additional Info</section>;
-      case 6:
-        return <section className={componentClass}>Step 6: Review & Submit</section>;
-      case 7:
-        return <section className={componentClass}>Step 7: Final Check</section>;
-      case 8:
-        return <section className={componentClass}>Step 8: Completion</section>;
-      default:
-        return <section className={componentClass}>Step 1: Intro Form</section>;
-    }
-  };
 
   const handleClickOutside = (event: any) => {
     if (timelineRef.current && !timelineRef.current.contains(event.target)) {
@@ -85,6 +40,11 @@ export const MultiStep = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [timeline]);
+
+  useEffect(() => {
+    // Store the current step in local storage whenever it changes
+    localStorage.setItem('currentStep', step.toString());
+  }, [step]);
 
   return (
     <>
@@ -152,7 +112,7 @@ export const MultiStep = () => {
         </nav>
 
         <div className="flex-grow md:p-2 md:ml-[10px]">
-          {renderStepContent()}
+          <RenderStepContent step={step}/>
         </div>
       </div>
     </>
