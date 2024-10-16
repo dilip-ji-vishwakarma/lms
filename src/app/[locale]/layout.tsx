@@ -42,7 +42,6 @@ export default function RootLayout({
       <body
         className={`h-full m-0 bg-gray-100 antialiased`}
       >
-
         <div className="flex flex-col lg:flex-row h-full">
           <Sidebar />
           <main className="flex-1 bg-gray-50 p-4 overflow-y-auto lg:pl-[50px] lg:pr-[50px]">

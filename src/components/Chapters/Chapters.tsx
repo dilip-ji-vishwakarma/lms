@@ -10,13 +10,13 @@ export const Chapters = () => {
     const t = useTranslations('HomePage');
 
     return (
-        <div className='space-y-6'>
+        <div className='space-y-6' id='#reactjs'>
             <Video
                 url="https://www.youtube.com/embed/SqcY0GlETPk?si=-OHCyzVVo4sxSZVE"
                 start={0}
                 end={75}
             />
-            <div className='flex justify-between'>
+            <div className='md:flex justify-between'>
                 <Heading>React Tutorial for Beginners</Heading>
                 <LanguageSelector />
             </div>

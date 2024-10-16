@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import { ToolTip } from '../ToolTip';
 import { Chapters } from '@/components/Chapters';
+import { Heading } from '../Heading';
+import { IconRender } from '../IconRender';
 
 export const MultiStep = () => {
   const [step, setStep] = useState(1);
-
+  const [timeline, setTimeline] = useState(false);
   const timeLine = [
     {
       title: "Course Intro",
@@ -41,7 +43,7 @@ export const MultiStep = () => {
     }
   ];
 
-  const componentClass = "text-black shadow-[rgba(149,157,165,0.2)_0px_8px_24px] p-5";
+  const componentClass = "text-black shadow-[rgba(149,157,165,0.2)_0px_8px_24px] md:p-5 p-3";
 
   const renderStepContent = () => {
     switch (step) {
@@ -66,33 +68,47 @@ export const MultiStep = () => {
     }
   };
 
+
   return (
-    <div className="font-sans text-white relative flex">
-      <nav className="relative">
-        <ul className='flex flex-col space-y-10 ml-[-20px]'>
-          {timeLine.map((item, index) => (
-            <li key={index} className={`relative z-10 ${step === index + 1 ? 'active' : ''}`}>
-              <button
-                className={`text-left transition-all duration-150 flex items-center space-x-4 ${step === index + 1 ? 'font-semibold text-black' : 'text-[#8F8E8E]'}`}
-                onClick={() => setStep(index + 1)}>
-                <div className={`w-4 h-4 rounded-full border-2 ${step === index + 1 ? 'bg-black border-black' : 'bg-white border-gray-400'}`}></div>
-                <ToolTip title={item.title}><div className='text-left'>
-                  <h3 className="text-sm truncate whitespace-nowrap overflow-hidden max-w-[100px]">{item.title}</h3>
-                  <p className="text-sm">{item.duration}</p>
-                </div></ToolTip>
-              </button>
-
-              {index !== timeLine.length - 1 && (
-                <div className="absolute top-full left-[8px] w-[2px] h-full bg-gray-300 z-0"></div>
-              )}
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <div className="flex-grow p-2 ml-[10px]">
-        {renderStepContent()}
+    <>
+      <div className='md:hidden flex items-center justify-between'>
+        <Heading className='text-lg'>Timeline</Heading>
+        <span onClick={() => setTimeline(!timeline)}>
+          {timeline ? (<IconRender name="X" className='rotate-180' />) : (<IconRender name="TableOfContents" className='rotate-180' />)}
+        </span>
       </div>
-    </div>
+      <div className="font-sans text-white relative  md:flex">
+        <nav className="md:relative md:block hidden">
+          <ul className='flex flex-col space-y-10 ml-[-20px]'>
+            {timeLine.map((item, index) => (
+              <li key={index} className={`relative z-10 ${step === index + 1 ? 'active' : ''}`}>
+                <div
+                  className={`text-left transition-all duration-150 flex items-center space-x-4 ${step === index + 1 ? 'font-semibold text-black' : 'text-[#8F8E8E]'}`}
+                  onClick={() => setStep(index + 1)}
+                >
+                  <div className={`w-4 h-4 rounded-full border-2 ${step === index + 1 ? 'bg-black border-black' : 'bg-white border-gray-400'}`}></div>
+                  <div className='text-left'>
+                    <ToolTip title={item.title}>
+                      <div className='text-left'>
+                        <h3 className="text-sm truncate whitespace-nowrap overflow-hidden max-w-[100px]">{item.title}</h3>
+                        <p className="text-sm">{item.duration}</p>
+                      </div>
+                    </ToolTip>
+                  </div>
+                </div>
+
+                {index !== timeLine.length - 1 && (
+                  <div className="absolute top-full left-[8px] w-[2px] h-full bg-gray-300 z-0"></div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="flex-grow md:p-2 md:ml-[10px]">
+          {renderStepContent()}
+        </div>
+      </div>
+    </>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import YouTube, { YouTubeProps} from 'react-youtube';
+import YouTube, { YouTubeProps } from 'react-youtube';
 import { CgSpinner } from "react-icons/cg";
 
 type VideoProps = {
@@ -21,14 +21,14 @@ export const Video = ({ url, start, end }: VideoProps) => {
   const videoId = getVideoId(url);
 
   const opts: YouTubeProps['opts'] = {
-    height: '500px',
+    height: '100%',
     width: '100%',
     playerVars: {
       autoplay: 0,
       rel: 0,
       controls: 1,
-      start: start, // Start at the specified time
-      end: end,  
+      start: start,
+      end: end,
     },
   };
 
@@ -43,7 +43,7 @@ export const Video = ({ url, start, end }: VideoProps) => {
   };
 
   return (
-    <div className="w-full h-[500px] relative">
+    <div className="w-full md:h-[500px] relative">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
           <div className="loader">
@@ -57,6 +57,7 @@ export const Video = ({ url, start, end }: VideoProps) => {
           opts={opts}
           onReady={onReady}
           onStateChange={onStateChange}
+          className="w-full h-full"
         />
       ) : (
         <p>Invalid YouTube URL</p>

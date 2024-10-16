@@ -8,7 +8,7 @@ const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false); 
 
     const sidebarmenu = [
-        { title: "React Js", value: "#home" },
+        { title: "React Js", value: "#reactjs" },
         { title: "Description", value: "#description" },
         { title: "Question Arrays", value: "#queries" },
         { title: "Notes", value: "#notes" }
@@ -20,7 +20,7 @@ const Sidebar = () => {
         <div className='md:w-[20%] flex justify-between md:px-0 px-5 md:py-0 py-[7px]'>
             <Image src="/images/skilline.png" alt="Skilline" width={1383} height={263} className="text-transparent w-[55%] max-w-full md:hidden  " />
             <button
-                className="lg:hidden p-4 focus:outline-none float-right"
+                className="lg:hidden  focus:outline-none float-right"
                 onClick={toggleSidebar}
             >
                 <svg

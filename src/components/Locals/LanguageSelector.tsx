@@ -20,7 +20,7 @@ export default function LocalSwitcher() {
       <p className='sr-only'>change language</p>
       <select
         defaultValue={localActive}
-        className='bg-transparent py-2'
+        className='bg-transparent py-2 focus-visible:outline-none'
         onChange={onSelectChange}
         disabled={isPending}
       >

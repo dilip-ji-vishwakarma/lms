@@ -1,12 +1,12 @@
 import { MultiStep } from "@/components/core";
 import { NextIntlClientProvider } from "next-intl";
-import {getLocale, getMessages} from 'next-intl/server';
+import { getMessages } from 'next-intl/server';
 export default async function Home() {
   const messages = await getMessages();
   return (
-    <div className="space-y-7">
+    <div className="md:space-y-7 space-y-5">
       <NextIntlClientProvider messages={messages}>
-      <MultiStep />
+        <MultiStep />
       </NextIntlClientProvider>
     </div>
   );
