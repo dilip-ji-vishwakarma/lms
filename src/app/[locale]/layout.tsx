@@ -34,6 +34,11 @@ export default function RootLayout({
 
   return (
     <html lang={locale} className="h-full">
+      <head>
+        <link rel="icon" href="/favicon.png" />
+        <title>LMS</title>
+        <meta name="Skilline" content="Learning Management System" />
+      </head>
       <body
         className={`h-full m-0 bg-gray-100 antialiased`}
       >
