@@ -7,10 +7,13 @@ import { RenderStepContent } from '@/components/Functions';
 
 export const MultiStep = () => {
   const [step, setStep] = useState(() => {
-    // Retrieve the step from local storage or default to 1
-    const savedStep = localStorage.getItem('currentStep');
-    return savedStep ? parseInt(savedStep, 10) : 1;
+    if (typeof window !== 'undefined') {
+      const savedStep = localStorage.getItem('currentStep');
+      return savedStep ? parseInt(savedStep, 10) : 1;
+    }
+    return 1; 
   });
+
   const [timeline, setTimeline] = useState(false);
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const timeLine = [
