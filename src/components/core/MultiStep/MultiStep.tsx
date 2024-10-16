@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ToolTip } from '../ToolTip';
 import { Chapters } from '@/components/Chapters';
 import { Heading } from '../Heading';
@@ -8,6 +8,7 @@ import { IconRender } from '../IconRender';
 export const MultiStep = () => {
   const [step, setStep] = useState(1);
   const [timeline, setTimeline] = useState(false);
+  const timelineRef = useRef<HTMLDivElement | null>(null);
   const timeLine = [
     {
       title: "Course Intro",
@@ -68,15 +69,60 @@ export const MultiStep = () => {
     }
   };
 
+  const handleClickOutside = (event: any) => {
+    if (timelineRef.current && !timelineRef.current.contains(event.target)) {
+      setTimeline(false);
+    }
+  };
+
+  useEffect(() => {
+    if (timeline) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [timeline]);
 
   return (
     <>
+      {/* Mobile/Tablet View */}
       <div className='md:hidden flex items-center justify-between'>
         <Heading className='text-lg'>Timeline</Heading>
         <span onClick={() => setTimeline(!timeline)}>
           {timeline ? (<IconRender name="X" className='rotate-180' />) : (<IconRender name="TableOfContents" className='rotate-180' />)}
         </span>
       </div>
+
+      {/* Conditionally render the timeline for mobile/tablet view */}
+      {timeline && (
+        <nav className="md:hidden block relative" ref={timelineRef}>
+          <ul className='flex flex-col space-y-4 px-[10px] py-[10px] h-[240px] bg-white overflow-scroll absolute z-[999] w-full'>
+            {timeLine.map((item, index) => (
+              <li key={index} className={`relative z-10 ${step === index + 1 ? 'active' : ''}`}>
+                <div
+                  className={`text-left transition-all duration-150 flex items-center space-x-4 ${step === index + 1 ? 'font-semibold text-black' : 'text-[#8F8E8E]'}`}
+                  onClick={() => {
+                    setStep(index + 1);
+                    setTimeline(false);
+                  }}
+                >
+                  <div className='text-left'>
+                    <div className='text-left'>
+                      <h3 className="text-sm md:truncate whitespace-nowrap overflow-hidden md:max-w-[100px]">{item.title}</h3>
+                      <p className="text-sm">{item.duration}</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
+      {/* Desktop View */}
       <div className="font-sans text-white relative  md:flex">
         <nav className="md:relative md:block hidden">
           <ul className='flex flex-col space-y-10 ml-[-20px]'>

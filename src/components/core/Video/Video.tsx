@@ -43,7 +43,7 @@ export const Video = ({ url, start, end }: VideoProps) => {
   };
 
   return (
-    <div className="w-full md:h-[500px] relative">
+    <div className="w-full md:h-[500px] h-[200px] relative">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
           <div className="loader">

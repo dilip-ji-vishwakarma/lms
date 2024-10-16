@@ -1,7 +1,7 @@
-"use client"
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useState } from 'react'
+"use client";
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useState } from 'react';
 import { Heading } from '../core';
 
 const Sidebar = () => {
@@ -9,18 +9,21 @@ const Sidebar = () => {
 
     const sidebarmenu = [
         { title: "React Js", value: "#reactjs" },
-        { title: "Description", value: "#description" },
-        { title: "Question Arrays", value: "#queries" },
-        { title: "Notes", value: "#notes" }
+        { title: "Description", value: "#" },
+        { title: "Question Arrays", value: "#" },
+        { title: "Notes", value: "#" }
     ];
 
     const toggleSidebar = () => setIsOpen(!isOpen);
+    
+    // Function to close the sidebar
+    const closeSidebar = () => setIsOpen(false);
 
     return (
         <div className='md:w-[20%] flex justify-between md:px-0 px-5 md:py-0 py-[7px]'>
-            <Image src="/images/skilline.png" alt="Skilline" width={1383} height={263} className="text-transparent w-[55%] max-w-full md:hidden  " />
+            <Image src="/images/skilline.png" alt="Skilline" width={1383} height={263} className="text-transparent w-[55%] max-w-full md:hidden" />
             <button
-                className="lg:hidden  focus:outline-none float-right"
+                className="lg:hidden focus:outline-none float-right"
                 onClick={toggleSidebar}
             >
                 <svg
@@ -42,8 +45,8 @@ const Sidebar = () => {
             {/* Sidebar */}
             <aside className={`lg:h-screen lg:w-full bg-white shadow-lg px-[30px] py-5 lg:block
                 ${isOpen ? 'block' : 'hidden'} lg:static absolute top-0 left-0 w-3/4 h-full z-50`}>
-                    <Image src="/images/skilline.png" alt="Skilline" width={1383} height={263} className="w-52 pt-1 h-auto md:block hidden " />
-                    <Heading className='md:hidden block'>Menu</Heading>
+                <Image src="/images/skilline.png" alt="Skilline" width={1383} height={263} className="w-52 pt-1 h-auto md:block hidden" />
+                <Heading className='md:hidden block'>Menu</Heading>
                 <div className="flex justify-between items-center mb-4">
 
                     <button
@@ -70,8 +73,8 @@ const Sidebar = () => {
                 <ul className="space-y-2">
                     {sidebarmenu.map((item, index) => (
                         <li key={index}>
-                            <Link href={item.value}>
-                            {item.title}
+                            <Link href={item.value} onClick={closeSidebar}>
+                                {item.title}
                             </Link>
                         </li>
                     ))}
